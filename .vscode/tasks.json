@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json.schemastore.org/tasks.json",
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Backend: Dev",
+      "type": "shell",
+      "command": "powershell.exe",
+      "args": ["-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}/backend/dev.ps1"],
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "Frontend: Dev",
+      "type": "shell",
+      "command": "powershell.exe",
+      "args": ["-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}/frontend/dev.ps1"],
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "App: Run All",
+      "dependsOn": ["Backend: Dev", "Frontend: Dev"],
+      "dependsOrder": "parallel",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "Deploy: All",
+      "type": "shell",
+      "command": "powershell.exe",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/deploy.ps1"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Validate: Local",
+      "type": "shell",
+      "command": "powershell.exe",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/validate-local.ps1"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Git: Validate & Push",
+      "type": "shell",
+      "command": "powershell.exe",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/push.ps1"
+      ],
+      "problemMatcher": [],
+      "dependsOn": ["Validate: Local"],
+      "dependsOrder": "sequence"
+    },
+    {
+      "label": "Git: Commit, Validate & Push",
+      "type": "shell",
+      "command": "powershell.exe",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/commit-validate-push.ps1"
+      ],
+      "problemMatcher": []
+    }
+  ]
+}
