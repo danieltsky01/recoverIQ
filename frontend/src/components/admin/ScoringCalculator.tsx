@@ -6,8 +6,11 @@ import type { ScoringSystemConfig, ScoringResult, TestScenario } from '@/lib/sco
 import { Calculator, PlayCircle, Download, TrendingUp, TrendingDown, AlertCircle, CheckCircle, Settings } from 'lucide-react'
 import { toast } from '@/components/ui/Toast'
 
-// API configuration - use Firebase emulator for local development
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001/recoveriq-b2b09/us-central1'
+// API configuration - use production in deployed environment, emulator for local dev
+const API_URL = import.meta.env.VITE_API_URL || 
+  (import.meta.env.PROD 
+    ? 'https://us-central1-recoveriq-b2b09.cloudfunctions.net'
+    : 'http://localhost:5001/recoveriq-b2b09/us-central1')
 
 // Simple safe formula evaluator (replaces eval)
 function evaluateFormula(formula: string, context: Record<string, number>): number {
