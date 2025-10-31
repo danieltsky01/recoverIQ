@@ -11,6 +11,9 @@ function Write-Section($msg) {
   Write-Host "`n=== $msg ===" -ForegroundColor Cyan
 }
 
+# Ensure script runs from repo root regardless of where it's invoked
+Set-Location $PSScriptRoot
+
 # Resolve backend Python
 $backendVenvs = @("backend/venv", "backend/.venv")
 $venv = $backendVenvs | Where-Object { Test-Path $_ } | Select-Object -First 1
@@ -39,12 +42,16 @@ try {
   $hasNodeModules = Test-Path "node_modules"
   $tscBin = Join-Path (Resolve-Path ".").Path "node_modules/.bin/tsc.cmd"
   $needsInstall = (-not $hasNodeModules) -or (-not (Test-Path $tscBin))
-  if ($needsInstall) {
-    if (Test-Path "package-lock.json") {
-      npm ci
-    } else {
-      npm install
+  # Ensure new dependencies are installed when package.json changed (e.g., react-router-dom)
+  $requiredPkgs = @("react-router-dom")
+  foreach ($pkg in $requiredPkgs) {
+    if (-not (Test-Path (Join-Path (Resolve-Path ".").Path ("node_modules/" + $pkg)))) {
+      $needsInstall = $true
     }
+  }
+  if ($needsInstall) {
+    # Dependencies changed or missing: use npm install to update lockfile
+    npm install
     if ($LASTEXITCODE -ne 0) { throw "npm install failed" }
   } else {
     Write-Host "node_modules present; skipping install (close any running dev server to avoid file locks)" -ForegroundColor Yellow

@@ -1,0 +1,224 @@
+{
+  "kpis": [
+    {
+      "id": "kpi_data_completeness",
+      "name": "Data Completeness",
+      "definition": "Percentage of accounts in the portfolio that have all required fields (name, date of service, amount, contact info, payer type).",
+      "why_it_matters": "Incomplete data reduces traceability and increases cost of collection, making portfolios less valuable.",
+      "category": "Data Quality",
+      "metric_type": "Quality / Data Integrity",
+      "data_source": "Hospital EMR / Billing System",
+      "unit": "% complete",
+      "trend_direction": "Higher is better",
+      "benchmark_range": { "low": 76, "high": 114 },
+      "weight": 0.10,
+      "scoring_rules": [
+        { "condition": "data_completeness >= 95", "score": 5 },
+        { "condition": "data_completeness >= 80", "score": 3 },
+        { "condition": "data_completeness < 80", "score": 1 }
+      ],
+      "editable_by": "admin",
+      "tags": ["initial", "core", "data-quality"],
+      "enabled": true,
+      "last_updated": "2025-10-28T00:00:00.000Z"
+    },
+    {
+      "id": "kpi_charity_care_pct",
+      "name": "Charity Care Percentage",
+      "definition": "Percentage of hospital revenue written off as charity care under nonprofit or community benefit policies.",
+      "why_it_matters": "High charity percentages indicate reduced collectible debt and may reflect regulatory obligations rather than poor performance.",
+      "category": "Financial Performance",
+      "metric_type": "Financial",
+      "data_source": "Hospital Financial Reports",
+      "unit": "%",
+      "trend_direction": "Lower is better",
+      "benchmark_range": { "low": 2.4, "high": 3.6 },
+      "weight": 0.08,
+      "scoring_rules": [
+        { "condition": "charity_care_pct <= 3", "score": 5 },
+        { "condition": "charity_care_pct <= 6", "score": 3 },
+        { "condition": "charity_care_pct > 6", "score": 1 }
+      ],
+      "editable_by": "admin",
+      "tags": ["initial", "core", "financial"],
+      "enabled": true,
+      "last_updated": "2025-10-28T00:00:00.000Z"
+    },
+    {
+      "id": "kpi_claim_denial_rate",
+      "name": "Claim Denial Rate",
+      "definition": "Percentage of insurance claims denied or returned for correction.",
+      "why_it_matters": "High denial rates suggest billing process inefficiencies that may spill into patient receivables, increasing uncollectible balances.",
+      "category": "Operational Efficiency",
+      "metric_type": "Operational Efficiency",
+      "data_source": "Claims Processing System",
+      "unit": "% denied",
+      "trend_direction": "Lower is better",
+      "benchmark_range": { "low": 4, "high": 6 },
+      "weight": 0.08,
+      "scoring_rules": [
+        { "condition": "claim_denial_rate <= 5", "score": 5 },
+        { "condition": "claim_denial_rate <= 10", "score": 3 },
+        { "condition": "claim_denial_rate > 10", "score": 1 }
+      ],
+      "editable_by": "admin",
+      "tags": ["initial", "core", "operational"],
+      "enabled": true,
+      "last_updated": "2025-10-28T00:00:00.000Z"
+    },
+    {
+      "id": "kpi_data_transfer_quality",
+      "name": "Data Transfer Quality",
+      "definition": "Percentage of accounts successfully validated upon import or transfer to the buyer's system.",
+      "why_it_matters": "Clean, validated data reduces onboarding time and error rates for agencies, directly improving ROI.",
+      "category": "Data Quality",
+      "metric_type": "Quality / Data Integrity",
+      "data_source": "Data Transfer Validation System",
+      "unit": "% valid",
+      "trend_direction": "Higher is better",
+      "benchmark_range": { "low": 76, "high": 114 },
+      "weight": 0.07,
+      "scoring_rules": [
+        { "condition": "data_transfer_quality >= 95", "score": 5 },
+        { "condition": "data_transfer_quality >= 85", "score": 3 },
+        { "condition": "data_transfer_quality < 85", "score": 1 }
+      ],
+      "editable_by": "admin",
+      "tags": ["initial", "core", "data-quality"],
+      "enabled": true,
+      "last_updated": "2025-10-28T00:00:00.000Z"
+    },
+    {
+      "id": "kpi_legal_dispute_freq",
+      "name": "Legal Dispute Frequency",
+      "definition": "Number of legal disputes or patient complaints per 1,000 accounts in the portfolio.",
+      "why_it_matters": "High dispute frequency signals compliance risks and potential reputational issues for both hospitals and buyers.",
+      "category": "Legal & Compliance",
+      "metric_type": "Legal / Compliance",
+      "data_source": "Legal & Compliance Tracking",
+      "unit": "Complaints / 1k accounts",
+      "trend_direction": "Lower is better",
+      "benchmark_range": { "low": 1.6, "high": 2.4 },
+      "weight": 0.08,
+      "scoring_rules": [
+        { "condition": "legal_dispute_freq <= 1", "score": 5 },
+        { "condition": "legal_dispute_freq <= 3", "score": 3 },
+        { "condition": "legal_dispute_freq > 3", "score": 1 }
+      ],
+      "editable_by": "admin",
+      "tags": ["initial", "core", "compliance"],
+      "enabled": true,
+      "last_updated": "2025-10-28T00:00:00.000Z"
+    },
+    {
+      "id": "kpi_phi_security",
+      "name": "PHI Security Compliance",
+      "definition": "Whether patient health information (PHI) is fully de-identified and transmitted securely per HIPAA guidelines.",
+      "why_it_matters": "Ensures privacy and prevents costly breaches, a key consideration for compliant debt transfers.",
+      "category": "Legal & Compliance",
+      "metric_type": "Quality / Data Integrity",
+      "data_source": "HIPAA Compliance Audit",
+      "unit": "Boolean",
+      "trend_direction": "Higher is better",
+      "benchmark_range": { "low": 1, "high": 1 },
+      "weight": 0.07,
+      "scoring_rules": [
+        { "condition": "phi_security == true || phi_security == 1", "score": 5 },
+        { "condition": "phi_security == false || phi_security == 0", "score": 1 }
+      ],
+      "editable_by": "admin",
+      "tags": ["initial", "core", "compliance", "security"],
+      "enabled": true,
+      "last_updated": "2025-10-28T00:00:00.000Z"
+    },
+    {
+      "id": "kpi_patient_complaint_rate",
+      "name": "Patient Complaint Rate",
+      "definition": "Number of verified patient complaints related to billing or collections per 1,000 accounts.",
+      "why_it_matters": "Measures ethical and reputational risk; lower complaint rates reflect fair and transparent collection practices.",
+      "category": "Ethical / ESG",
+      "metric_type": "Legal / Compliance",
+      "data_source": "Patient Relations / Customer Service",
+      "unit": "Complaints / 1k accounts",
+      "trend_direction": "Lower is better",
+      "benchmark_range": { "low": 1.6, "high": 2.4 },
+      "weight": 0.07,
+      "scoring_rules": [
+        { "condition": "patient_complaint_rate <= 1", "score": 5 },
+        { "condition": "patient_complaint_rate <= 3", "score": 3 },
+        { "condition": "patient_complaint_rate > 3", "score": 1 }
+      ],
+      "editable_by": "admin",
+      "tags": ["initial", "core", "esg", "ethics"],
+      "enabled": true,
+      "last_updated": "2025-10-28T00:00:00.000Z"
+    },
+    {
+      "id": "kpi_billing_centralization",
+      "name": "Billing Centralization",
+      "definition": "Degree to which the hospital's billing operations are centralized under a unified system.",
+      "why_it_matters": "Centralized billing ensures consistency, cleaner data, and faster dispute resolution.",
+      "category": "Operational Efficiency",
+      "metric_type": "Operational Efficiency",
+      "data_source": "Billing System Architecture",
+      "unit": "% centralized",
+      "trend_direction": "Higher is better",
+      "benchmark_range": { "low": 72, "high": 108 },
+      "weight": 0.07,
+      "scoring_rules": [
+        { "condition": "billing_centralization >= 90", "score": 5 },
+        { "condition": "billing_centralization >= 70", "score": 3 },
+        { "condition": "billing_centralization < 70", "score": 1 }
+      ],
+      "editable_by": "admin",
+      "tags": ["initial", "core", "operational"],
+      "enabled": true,
+      "last_updated": "2025-10-28T00:00:00.000Z"
+    },
+    {
+      "id": "kpi_community_reputation",
+      "name": "Community Reputation Index",
+      "definition": "Composite score derived from public sentiment, community engagement, and complaint ratios.",
+      "why_it_matters": "Hospitals with better reputations face fewer escalations and support more ethical collection efforts.",
+      "category": "Ethical / ESG",
+      "metric_type": "Quality / Data Integrity",
+      "data_source": "Community Surveys & Public Records",
+      "unit": "Score (1–5)",
+      "trend_direction": "Higher is better",
+      "benchmark_range": { "low": 3.2, "high": 4.8 },
+      "weight": 0.08,
+      "scoring_rules": [
+        { "condition": "community_reputation >= 4.5", "score": 5 },
+        { "condition": "community_reputation >= 3.5", "score": 3 },
+        { "condition": "community_reputation < 3.5", "score": 1 }
+      ],
+      "editable_by": "admin",
+      "tags": ["initial", "core", "esg", "reputation"],
+      "enabled": true,
+      "last_updated": "2025-10-28T00:00:00.000Z"
+    },
+    {
+      "id": "kpi_self_pay_pct",
+      "name": "Payer Mix (Self-Pay Percentage)",
+      "definition": "Percentage of accounts classified as self-pay (uninsured) versus insured or government payers.",
+      "why_it_matters": "Higher self-pay ratios indicate higher risk portfolios with lower recovery rates.",
+      "category": "Financial Performance",
+      "metric_type": "Financial",
+      "data_source": "Payer Classification System",
+      "unit": "%",
+      "trend_direction": "Lower is better",
+      "benchmark_range": { "low": 32, "high": 48 },
+      "weight": 0.10,
+      "scoring_rules": [
+        { "condition": "self_pay_pct <= 40", "score": 5 },
+        { "condition": "self_pay_pct <= 60", "score": 3 },
+        { "condition": "self_pay_pct > 60", "score": 1 }
+      ],
+      "editable_by": "admin",
+      "tags": ["initial", "core", "financial", "risk"],
+      "enabled": true,
+      "last_updated": "2025-10-28T00:00:00.000Z"
+    }
+  ],
+  "last_updated": "2025-10-28T00:00:00.000Z"
+}

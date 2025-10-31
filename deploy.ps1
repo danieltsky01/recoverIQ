@@ -158,7 +158,9 @@ $cloudRunUrl = Deploy-CloudRun -projectId $ProjectId -region $Region -serviceNam
 # 5) Build frontend
 Build-Frontend
 
-# 6) Deploy Hosting
+# 6) Deploy Functions + Hosting
+Write-Section "Deploying Firebase Functions"
+firebase deploy --only functions --project $ProjectId --non-interactive | Out-Host
 Deploy-Hosting -projectId $ProjectId
 
 Write-Section "Done!"

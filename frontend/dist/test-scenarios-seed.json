@@ -1,0 +1,79 @@
+{
+  "scenarios": [
+    {
+      "id": "low_risk",
+      "name": "Low Risk Portfolio",
+      "description": "High recovery, fresh debt, excellent data quality",
+      "inputs": {
+        "recovery_rate": 12,
+        "avg_debt_age": 150,
+        "statute_remaining": 30,
+        "data_completeness": 98,
+        "data_transfer_quality": 97,
+        "charity_care_pct": 2.5,
+        "claim_denial_rate": 4,
+        "payer_mix_self_pay_percentage": 35,
+        "legal_dispute_frequency": 0.8,
+        "phi_security_compliance": 1,
+        "patient_complaint_rate": 0.5,
+        "billing_centralization": 95,
+        "community_reputation_index": 4.5
+      },
+      "expected_outputs": {
+        "weighted_score": 85,
+        "risk_tier": "Excellent",
+        "collectability_index": 85
+      }
+    },
+    {
+      "id": "medium_risk",
+      "name": "Medium Risk Portfolio",
+      "description": "Average recovery, moderate debt age, good data quality",
+      "inputs": {
+        "recovery_rate": 7,
+        "avg_debt_age": 250,
+        "statute_remaining": 18,
+        "data_completeness": 85,
+        "data_transfer_quality": 88,
+        "charity_care_pct": 4.5,
+        "claim_denial_rate": 7,
+        "payer_mix_self_pay_percentage": 50,
+        "legal_dispute_frequency": 2,
+        "phi_security_compliance": 1,
+        "patient_complaint_rate": 2,
+        "billing_centralization": 75,
+        "community_reputation_index": 3.8
+      },
+      "expected_outputs": {
+        "weighted_score": 60,
+        "risk_tier": "Good",
+        "collectability_index": 60
+      }
+    },
+    {
+      "id": "high_risk",
+      "name": "High Risk Portfolio",
+      "description": "Low recovery, old debt, poor data quality",
+      "inputs": {
+        "recovery_rate": 3,
+        "avg_debt_age": 450,
+        "statute_remaining": 8,
+        "data_completeness": 70,
+        "data_transfer_quality": 75,
+        "charity_care_pct": 8,
+        "claim_denial_rate": 12,
+        "payer_mix_self_pay_percentage": 70,
+        "legal_dispute_frequency": 4,
+        "phi_security_compliance": 1,
+        "patient_complaint_rate": 4,
+        "billing_centralization": 60,
+        "community_reputation_index": 3.0
+      },
+      "expected_outputs": {
+        "weighted_score": 35,
+        "risk_tier": "Poor",
+        "collectability_index": 35
+      }
+    }
+  ]
+}

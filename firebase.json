@@ -3,6 +3,21 @@
     "rules": "firestore.rules",
     "indexes": "firestore.indexes.json"
   },
+  "functions": {
+    "source": "functions"
+  },
+  "emulators": {
+    "functions": {
+      "port": 5001
+    },
+    "firestore": {
+      "port": 8080
+    },
+    "ui": {
+      "enabled": true,
+      "port": 4000
+    }
+  },
   "hosting": {
     "public": "frontend/dist",
     "ignore": [
@@ -19,7 +34,8 @@
       }
     ],
     "rewrites": [
-      { "source": "/api/**", "run": { "serviceId": "hospital-scorer-api", "region": "us-central1" } },
+      { "source": "/api/score", "function": "scoreHospital" },
+      { "source": "/api/health", "function": "health" },
       { "source": "**", "destination": "/index.html" }
     ]
   }

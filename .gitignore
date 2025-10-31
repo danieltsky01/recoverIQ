@@ -13,3 +13,4 @@ frontend/.env*
 # OS/editor
 .DS_Store
 .vscode/*.log
+node_modules

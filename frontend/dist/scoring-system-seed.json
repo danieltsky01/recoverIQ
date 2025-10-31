@@ -1,0 +1,33 @@
+{
+  "risk_tiers": [
+    {
+      "name": "Excellent",
+      "min": 80,
+      "color": "green"
+    },
+    {
+      "name": "Good",
+      "min": 60,
+      "color": "blue"
+    },
+    {
+      "name": "Fair",
+      "min": 40,
+      "color": "amber"
+    },
+    {
+      "name": "Poor",
+      "min": 20,
+      "color": "orange"
+    },
+    {
+      "name": "Critical",
+      "min": 0,
+      "color": "red"
+    }
+  ],
+  "collectability_formula": "(score / 5) * 100",
+  "purchase_formula": "0.10 + ((score / 5) * 0.15)",
+  "confidence_formula": "(dataCompleteness * 0.5) + (validationRate * 0.3) + (recency * 0.2)",
+  "last_updated": "2025-10-28T00:00:00.000Z"
+}

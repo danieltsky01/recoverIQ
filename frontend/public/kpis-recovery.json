@@ -1,0 +1,116 @@
+{
+  "kpis": [
+    {
+      "id": "kpi_statute_of_limitations",
+      "name": "Statute of Limitations Remaining",
+      "definition": "The average number of months remaining before the legal right to pursue unpaid accounts expires, based on the governing state's debt collection laws.",
+      "why_it_matters": "This KPI determines whether the portfolio is legally collectible. Once the statute of limitations expires, a debt buyer can no longer pursue collection through legal means, significantly reducing portfolio value. Tracking this ensures only legally viable accounts are priced and sold.",
+      "category": "Legal & Compliance",
+      "metric_type": "Time",
+      "data_source": "State Attorney General or Consumer Finance databases; Hospital legal department summaries",
+      "unit": "Months Remaining",
+      "trend_direction": "Higher is better",
+      "benchmark_range": {
+        "low": 19.2,
+        "high": 28.8
+      },
+      "weight": 0.10,
+      "scoring_rules": [
+        {
+          "condition": "statute_remaining >= 24",
+          "score": 5,
+          "description": "Excellent — strong legal window for recovery"
+        },
+        {
+          "condition": "statute_remaining >= 12",
+          "score": 3,
+          "description": "Moderate — half of the legal window remains"
+        },
+        {
+          "condition": "statute_remaining < 12",
+          "score": 1,
+          "description": "Poor — approaching or past legal expiration"
+        }
+      ],
+      "editable_by": "admin",
+      "tags": ["legal", "compliance", "collectability", "risk"],
+      "enabled": true,
+      "last_updated": "2025-10-28T00:00:00.000Z"
+    },
+    {
+      "id": "kpi_avg_debt_age",
+      "name": "Average Debt Age",
+      "definition": "The average number of days that unpaid patient accounts have been outstanding since the date of service or billing.",
+      "why_it_matters": "Debt age is one of the strongest predictors of collectability. The older a debt is, the less likely it is to be recovered. Measuring this KPI allows both hospitals and buyers to assess the freshness and overall quality of the portfolio.",
+      "category": "Operational Efficiency",
+      "metric_type": "Time",
+      "data_source": "Hospital billing system (A/R aging report), CMS Cost Reports",
+      "unit": "Days",
+      "trend_direction": "Lower is better",
+      "benchmark_range": {
+        "low": 144,
+        "high": 216
+      },
+      "weight": 0.10,
+      "scoring_rules": [
+        {
+          "condition": "avg_debt_age <= 180",
+          "score": 5,
+          "description": "Excellent — debt is fresh and highly collectible"
+        },
+        {
+          "condition": "avg_debt_age <= 365",
+          "score": 3,
+          "description": "Moderate — still collectible with effort"
+        },
+        {
+          "condition": "avg_debt_age > 365",
+          "score": 1,
+          "description": "Poor — aged debt, low recovery potential"
+        }
+      ],
+      "editable_by": "admin",
+      "tags": ["aging", "collections", "efficiency", "portfolio_quality"],
+      "enabled": true,
+      "last_updated": "2025-10-28T00:00:00.000Z"
+    },
+    {
+      "id": "kpi_recovery_rate",
+      "name": "Recovery Rate",
+      "definition": "Percentage of total patient receivables historically recovered by the hospital within 12 months.",
+      "why_it_matters": "A high recovery rate indicates strong billing practices and efficient follow-up, reducing buyer risk. A low recovery rate suggests weak collection operations and lower likelihood of repayment.",
+      "category": "Financial Performance",
+      "metric_type": "Financial",
+      "data_source": "Hospital billing reports, CMS Cost Reports, or financial statements (IRS 990)",
+      "unit": "%",
+      "trend_direction": "Higher is better",
+      "benchmark_range": {
+        "low": 6.4,
+        "high": 12
+      },
+      "weight": 0.15,
+      "scoring_rules": [
+        {
+          "condition": "recovery_rate >= 10",
+          "score": 5,
+          "description": "Excellent performance; above industry average"
+        },
+        {
+          "condition": "recovery_rate >= 5",
+          "score": 3,
+          "description": "Acceptable; within industry norm"
+        },
+        {
+          "condition": "recovery_rate < 5",
+          "score": 1,
+          "description": "Underperforming; likely lower recovery potential"
+        }
+      ],
+      "editable_by": "admin",
+      "tags": ["collections", "finance", "performance", "yield"],
+      "enabled": true,
+      "last_updated": "2025-10-28T00:00:00.000Z"
+    }
+  ],
+  "last_updated": "2025-10-28T00:00:00.000Z"
+}

@@ -23,18 +23,29 @@ export default function Dashboard({ result }: Props) {
 					<span className="font-medium">{result.hospital}</span>
 				</div>
 				<div className="flex justify-between">
-					<span>Weighted Score</span>
-					<span className="font-medium">{result.weighted_score.toFixed(2)} / 5.00</span>
+					<span>Overall Score</span>
+					<span className="font-medium">{result.overall_score.toFixed(2)} / 100</span>
 				</div>
-				<div className="flex justify-between">
-					<span>Risk Level</span>
-					<span className="font-medium">{result.risk_level}</span>
-				</div>
-				<div className="flex justify-between">
-					<span>Recommended Price</span>
-					<span className="font-medium">${result.recommended_purchase_value.toFixed(2)} per $1 face value</span>
+				<div>
+					<div className="text-sm text-slate-600 mb-1">Top categories</div>
+					{renderTopCategories(result.category_scores).map(([k,v]) => (
+						<div key={k} className="flex items-center gap-2 text-sm">
+							<div className="w-48">{k}</div>
+							<div className="flex-1 h-2 bg-slate-100 rounded overflow-hidden">
+								<div className="h-full bg-blue-500" style={{ width: `${Math.max(0, Math.min(100, v))}%` }} />
+							</div>
+							<div className="w-14 text-right">{v.toFixed(1)}</div>
+						</div>
+					))}
 				</div>
 			</div>
 		</div>
 	)
+}
+
+function renderTopCategories(map: Record<string, number> | undefined): Array<[string, number]> {
+  if (!map) return []
+  const entries = Object.entries(map)
+  entries.sort((a,b)=> (b[1]||0)-(a[1]||0))
+  return entries.slice(0, 3)
 }
